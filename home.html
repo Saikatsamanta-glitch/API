@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap');
+        #myHiddenPage { 
+            display: none;
+        } 
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Quicksand','sans-serif';
+
+        }
+        body{
+            background:#f3f2ef;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            height: 100vh;
+            width: 100vw;
+        }
+        html,body{
+            font-size: 90.5%;
+            height: 100%;
+        }
+        html{
+            background: #eee;
+        }
+
+
+        .box {
+            width: 35vw;
+            height: 60vh;
+            border-radius: 0.5rem;
+            background: #a5bbdd;
+            position: relative;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;  
+            overflow: hidden;
+            transform: translate3d(0,0,0);
+            min-width: 20rem;  
+            min-height: 15rem;        
+        }
+       
+
+        .box:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <div id='myHiddenPage'></div>
+    <div class="box">
+        <div class="wave -one"></div>
+        <div class="wave -two"></div>
+        <div class="wave -three"></div>
+
+        <div id=weathercon><i class="fas fa-sun" style="color: #eccc68;"></i></div>
+        
+        <div class="info">
+            <h2 class="location"><i class="fas fa-street-view" style="color: white;"></i>Pune, In</h2>
+            <p id="date">WED | October 23 | 10:49PM</p>
+            <h1 class="temp">26.46 C</h1>
+            <h3 class="tempmin_max">Min 26.49 C| Max 26.49 C</h3>
+        </div>
+    </div>
+</body>
+<script src="https://kit.fontawesome.com/62644fca50.js" crossorigin="anonymous"></script>
+<script>
+    
+    const curDate = document.getElementById('date');
+    let weathercon = document.getElementById('weathercon');
+    const tempStatus = "Clouds";
+
+    const getCurrentDay = () => {
+        let CurrentTime = new Date();
+
+        const weekday = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+        const months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+        var day = weekday[CurrentTime.getDay()];
+        var month = months[CurrentTime.getMonth()];
+        var date = CurrentTime.getDate();
+        var year = CurrentTime.getFullYear();
+        var time = CurrentTime.getHours();
+        var min = CurrentTime.getMinutes();
+
+        let perios = "AM";
+        if (time > 11) {
+            perios = "PM";
+            if (time > 12) time -= 12;
+        }
+        if (min < 9) {
+            var min = "0" + min;
+        }
+        return day + " |" + month + " " + date + " |" + time + ":" + min + perios;
+    };
+    curDate.innerHTML = getCurrentDay();
+    console.log(getCurrentDay());
+
+</script>
+
+</html>
